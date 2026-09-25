@@ -58,9 +58,50 @@ public class Hotel {
         }
         return existe;
     }
+    /**
+     * Metodo que permite actualizar el estado de una habitacion.
+     */
+    public boolean actualizarEstadoHabitacion(String numeroHabitacion, String estado){
+        return false;
+    }
+    /**
+    *metodo que permite registrar una reserva
+    */
+    public boolean registrarReserva(String codigoReserva, String fechaRealizacion,
+                                    String fechaEntrada, String fechaSalida,
+                                    String estado, String metodoPago,
+                                    double valorTotal){
+        return false;}
+        /**
+         * Metodo que permite agregar una habitacion a una reserva.
+         */
+        public void agregarHabitacionReserva(String codigoReserva, String numeroHabitacion){
 
+        }
+
+        /**
+         * Metodo que permite agregar un servicio a una reserva.
+         */
+        public void agregarServicioReserva(String codigoReserva, String codigoServicio){
+
+        }
 
     /**
+     * Metodo que permite registrar un servicio adicional.
+     */
+    public boolean registrarServicio(String codigo, String nombre,
+                                     String descripcion, double precio,
+                                     boolean disponibilidad){
+        return false;
+    }
+    /**
+     * Metodo que permite aplicar un descuento a un huesped frecuente.
+     */
+    public double aplicarDescuentoHuespedFrecuente(int documentoIdentidad) {
+        return 0;
+    }
+
+     /**
      * Metodo que permite buscar un huesped
      *
      * @param documentoIdentidad documento del huesped a buscar
