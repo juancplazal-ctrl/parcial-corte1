@@ -3,8 +3,7 @@ package uniquindio.edu.co.model;
 import java.util.List;
 
 public class Huesped {
-    private String nombreCompleto, telefono, correoElectronico, paisProcedencia;
-    private int documentoIdentidad;
+    private String nombreCompleto, telefono, correoElectronico, paisProcedencia, documentoIdentidad;
     /**
      * Metodo constructor de la clase Huesped
      * @param nombreCompleto nombre completo del huesped
@@ -13,7 +12,7 @@ public class Huesped {
      * @param correoElectronico correo electronico del huesped
      * @param paisprocedencia pais de procedencia del huesped
      */
-    public Huesped (String nombreCompleto, int telefono, String correoElectronico, String paisprocedencia, String documentoIdentidad ){
+    public Huesped (String nombreCompleto, String telefono, String correoElectronico, String paisprocedencia, String documentoIdentidad ){
         this.nombreCompleto=nombreCompleto;
         this.telefono=telefono;
         this.correoElectronico=correoElectronico;
@@ -56,11 +55,11 @@ public class Huesped {
         this.paisProcedencia = paisProcedencia;
     }
 
-    public int getDocumentoIdentidad() {
+    public String getDocumentoIdentidad() {
         return documentoIdentidad;
     }
 
-    public void setDocumentoIdentidad(int documentoIdentidad) {
+    public void setDocumentoIdentidad(String documentoIdentidad) {
         this.documentoIdentidad = documentoIdentidad;
     }
 

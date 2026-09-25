@@ -46,9 +46,9 @@ public class Hotel {
      * @return
      */
 
-    public boolean registrarHuesped(String nombreCompleto, int documentoIdentidad, String telefono, String correoElectronico, String paisProcedencia) {
+    public boolean registrarHuesped(String nombreCompleto, String documentoIdentidad, String telefono, String correoElectronico, String paisProcedencia) {
         boolean existe = false;
-        Huesped huesped = buscarHuesped(documentoIdentidad);
+        Huesped huesped = buscarHuesped(Integer.parseInt(documentoIdentidad));
         if (huesped == null) {
             Huesped huespedNuevo = new
                     Huesped(nombreCompleto, documentoIdentidad, telefono, correoElectronico, paisProcedencia);
@@ -72,7 +72,7 @@ public class Hotel {
         for (int i = 0; i < listhotelHuesped.size(); i++) {
             Huesped huesped = listhotelHuesped.get(i);
 
-            if (huesped.getDocumentoIdentidad() == documentoIdentidad) {
+            if (huesped.getDocumentoIdentidad().equals(documentoIdentidad)) {
                 encontrado = huesped;
                 break;
             }
@@ -81,13 +81,103 @@ public class Hotel {
         return encontrado;
     }
 
+    public boolean registrarHabitacion(String numeroHabitacion, String tipo, int capacidadMaxima,
+                                       double precioNoche) {
+        boolean existe = false;
+        Habitacion habitacion = buscarHabitacion(numeroHabitacion);
+        if (habitacion == null) {
+            Habitacion nuevaHabitacion = new
+                    Habitacion(numeroHabitacion, tipo, capacidadMaxima, precioNoche);
+            listhotelHabitaciones.add(nuevaHabitacion);
+            existe = true;
 
+        }
+        return existe;
+    }
+
+    public Reserva buscarReserva(String codigo) {
+        Reserva encontrada = null;
+        for (int i = 0; i < listhotelReservas.size(); i++) {
+            Reserva reserva = listhotelReservas.get(i);
+            if (reserva.getCodigo().equals(codigo)) {
+                encontrada = reserva;
+                break;
+            }
+        }
+        return encontrada;
+    }
+
+    public Habitacion buscarHabitacion(String numeroHabitacion) {
+        Habitacion encontrado = null;
+        for (int i = 0; i < listhotelHabitaciones.size(); i++) {
+            Habitacion habitacion = listhotelHabitaciones.get(i);
+
+            if (habitacion.getNumeroHabitacion().equals(numeroHabitacion)) {
+                encontrado = habitacion;
+                break;
+            }
+        }
+
+        return encontrado;
+    }
+
+    public double calcularIngresosPorFecha(String fecha) {
+        double total = 0;
+        for (int i = 0; i < listhotelReservas.size(); i++) {
+            Reserva reserva = listhotelReservas.get(i);
+            if (reserva.getFechaRealizacion().equals(fecha)) {
+                total += reserva.getValorTotal();
+            }
+        }
+        return total;
+    }
+
+    public boolean actualizarEstadoHabitacion(String numeroHabitacion, String estado){
+        return false;
+    }
     public List<Servicio> getListhotelservicios() {
         return listhotelservicios;
     }
 
     public void setListhotelservicios(List<Servicio> listhotelservicios) {
         this.listhotelservicios = listhotelservicios;
+    }
+
+    public boolean registrarReserva(String codigoReserva, String fechaRealizacion,
+                                    String fechaEntrada, String fechaSalida,
+                                    String estado, String metodoPago,
+                                    double valorTotal){
+        return false;
+    }
+
+    public void agregarHabitacionReserva(String codigoReserva, String numeroHabitacion){
+    }
+
+    public void agregarServicioReserva(String codigoReserva, String codigoServicio){
+    }
+
+    public boolean registrarServicio(String codigo, String nombre,
+                                     String descripcion, String precio,
+                                     String disponibilidad){
+        return false;
+    }
+
+    public double aplicarDescuentoHuespedFrecuente(int documentoIdentidad) {
+        return 0;
+    }
+
+    public Huesped buscarHuesped(String documentoIdentidad) {
+        Huesped encontrado = null;
+        for (int i = 0; i < listhotelHuesped.size(); i++) {
+            Huesped huesped = listhotelHuesped.get(i);
+
+            if (huesped.getDocumentoIdentidad().equals(documentoIdentidad)) {
+                encontrado = huesped;
+                break;
+            }
+        }
+
+        return encontrado;
     }
 
     public String getNit() {
@@ -152,6 +242,10 @@ public class Hotel {
 
     public void setNombreComercial(String nombreComercial) {
         this.nombreComercial = nombreComercial;
+    }
+
+    public void registrarHabitacion(Habitacion nuevaHabitacion) {
+        listhotelHabitaciones.add(nuevaHabitacion);
     }
 }
 

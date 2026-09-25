@@ -1,10 +1,12 @@
 package uniquindio.edu.co.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Reserva {
     private String codigo, fechaRealizacion, fechaEntrada, fechaSalida, estado, metodoPago;
     private double valorTotal;
+    private int cantidadNoches;
     /**
      * Metodo constructor de la clase Reserva
      * @param codigo codigo de la reserva
@@ -16,7 +18,7 @@ public class Reserva {
      * @param valorTotal valor total de la reserva
      */
 
-    public Reserva(String codigo,String fechaRealizacion, String fechaEntrada, String fechaSalida,String estado,String metodoPago,double valorTotal){
+    public Reserva(String codigo,String fechaRealizacion, String fechaEntrada, String fechaSalida,String estado,String metodoPago,double valorTotal,int cantidadNoches){
         this.codigo=codigo;
         this.fechaRealizacion=fechaRealizacion;
         this.fechaEntrada=fechaEntrada;
@@ -24,11 +26,31 @@ public class Reserva {
         this.estado=estado;
         this.metodoPago=metodoPago;
         this.valorTotal=valorTotal;
+        this.cantidadNoches=cantidadNoches;
+        this.listreservaHabitaciones = new ArrayList<>();
+        this.listreservaServicios = new ArrayList<>();
     }
     //relaciones
     private Huesped huesped;
     private List<Habitacion> listreservaHabitaciones;
     private List<Servicio> listreservaServicios;
+
+    public double calcularValorTotal() {
+        double totalHabitaciones = 0;
+        for (int i = 0; i < listreservaHabitaciones.size(); i++) {
+            Habitacion habitacion = listreservaHabitaciones.get(i);
+            totalHabitaciones += habitacion.getPrecioNoche() * cantidadNoches;
+        }
+
+        double totalServicios = 0;
+        for (int i = 0; i < listreservaServicios.size(); i++) {
+            Servicio servicio = listreservaServicios.get(i);
+            totalServicios += servicio.getPrecio();
+        }
+
+        valorTotal = totalHabitaciones + totalServicios;
+        return valorTotal;
+    }
 
 
     public String getCodigo() {
@@ -111,5 +133,15 @@ public class Reserva {
         this.listreservaServicios = listreservaServicios;
     }
 
+    public int getCantidadNoches() {
+        return cantidadNoches;
+    }
 
+    public void setCantidadNoches(int cantidadNoches) {
+        this.cantidadNoches = cantidadNoches;
+    }
+
+    public void procesarPago() {
+        this.estado = "Pagada";
+    }
 }

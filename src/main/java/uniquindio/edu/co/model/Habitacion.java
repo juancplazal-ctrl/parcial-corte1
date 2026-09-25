@@ -10,21 +10,19 @@ public class Habitacion {
 
     /**
      * Metodo constructor de la clase Habitacion
+     *
      * @param numeroHabitacion numero de la habitacion
-     * @param tipo tipo de habitacion
-     * @param capacidadMaxima capacidad maxima de la habitacion
-     * @param precioNoche precio de la habitacion por noche
-     * @param disponibilidad disponibilidad de la habitacion
-     * @param estado estado actual de la habitacion
+     * @param tipo             tipo de habitacion
+     * @param capacidadMaxima  capacidad maxima de la habitacion
+     * @param precioNoche      precio de la habitacion por noche
      */
     public Habitacion(String numeroHabitacion, String tipo, int capacidadMaxima,
-                      double precioNoche, boolean disponibilidad, String estado) {
+                      double precioNoche) {
         this.numeroHabitacion = numeroHabitacion;
         this.tipo = tipo;
         this.capacidadMaxima = capacidadMaxima;
         this.precioNoche = precioNoche;
-        this.disponibilidad = disponibilidad;
-        this.estado = estado;
+        this.estado = "Disponible";
     }
     //relaciones
     private List<Reserva> listhabitacionReservas;
@@ -86,5 +84,9 @@ public class Habitacion {
         this.listhabitacionReservas = listhabitacionReservas;
     }
 
+    @Override
+    public String toString() {
+        return "Habitacion " + numeroHabitacion + " - " + tipo + " (Capacidad: " + capacidadMaxima + ", Precio/noche: " + precioNoche + ")";
+    }
 
 }
